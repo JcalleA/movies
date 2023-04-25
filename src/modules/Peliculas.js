@@ -12,8 +12,8 @@ const Peliculas = () => {
     const [datos, setDatos] = useState([])
 
 
-    const sendGetRequest = async () => {
-        try {
+    useEffect (() => {
+        
             axios
             .get(baseUrl + discover + keyApi)
             .then((res) => {
@@ -22,13 +22,8 @@ const Peliculas = () => {
                 console.log(datos);
             })
             .catch((error) => console.log(error))
-        } catch (err) {
-            // Handle Error Here
-            console.error(err);
-        }
-    };
-    
-    sendGetRequest();
+    },[]);
+    console.log(datos);
 
     
     return (
