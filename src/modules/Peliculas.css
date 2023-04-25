@@ -1,0 +1,23 @@
+.cardCont{
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+
+}
+.card{
+    float: left;
+    margin: 3%;
+    width: 40%;
+    height: auto;
+    border: solid 3px black;
+}
+.imgCont{
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    
+}
+.imgPeli{
+    width: 90%;
+    
+}
