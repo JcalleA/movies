@@ -9,38 +9,44 @@ const Peliculas = () => {
     const discover = '/discover/movie';
     const consulta = '&query=';
     const num = 1;
-    const [datos, setDatos] = useState([])
+    const [datos1, setDatos] = useState([])
 
 
-    useEffect (() => {
-        
-            axios
-            .get(baseUrl + discover + keyApi)
+    useEffect(() => {
+        axios.get(baseUrl + discover + keyApi)
             .then((res) => {
-                const data = res.data;
-                setDatos(data.results);
-                console.log(datos);
+                console.log(res);
+                const resultado = res.data
+                setDatos(resultado.results)
             })
-            .catch((error) => console.log(error))
-    },[]);
-    console.log(datos);
+            .catch((error) => (console.error(error)))
 
-    
+    }, [])
+
+
+    console.log(datos1);
+
+
+
+
     return (
 
         <div>
-        <h1>Esto es home</h1>
-            {datos.forEach(element => {
+            <h1>Esto es home</h1>
+            <div className="cardCont">
+            {datos1.map((element) => (
                 <div>
-                    <h1>Peliculas</h1>
                     <div className="card">
-                        <h1>${element.title}</h1>
+                        <div className="titleCont">
+                            <h1>${element.title}</h1>
+                        </div>
                         <div className="imgCont">
-                            <img className="imgPeli"></img>
+                            <img className="imgPeli" src={`${imagePath + element.backdrop_path}`}></img>
                         </div>
                     </div>
                 </div>
-            })}
+            ))}
+        </div>
         </div>
 
 

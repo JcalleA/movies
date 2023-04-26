@@ -1,14 +1,14 @@
 .cardCont{
-    display: flex;
-    width: 100%;
+    text-align: center;
     margin: 0 auto;
+    width: 100%;
 
 }
 .card{
     float: left;
     margin: 3%;
-    width: 40%;
-    height: auto;
+    width: 200px;
+    height: 500px;
     border: solid 3px black;
 }
 .imgCont{
@@ -20,4 +20,8 @@
 .imgPeli{
     width: 90%;
     
+}
+.titleCont{
+    font-size: 15px;
+    height: 120px;
 }
