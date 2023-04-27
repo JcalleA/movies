@@ -2,14 +2,18 @@
     text-align: center;
     margin: 0 auto;
     width: 100%;
+    color: white;
 
 }
 .card{
     float: left;
     margin: 3%;
     width: 200px;
-    height: 500px;
-    border: solid 3px black;
+    height: 350px;
+    
+    box-shadow: 0px 0px 20px black;
+    border-radius: 30px;
+    overflow: hidden;
 }
 .imgCont{
     text-align: center;
@@ -18,10 +22,43 @@
     
 }
 .imgPeli{
-    width: 90%;
+    width: 195px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px rgb(0, 0, 0);
+    aspect-ratio: 4/3;
     
 }
 .titleCont{
-    font-size: 15px;
+    text-align: center;
+    width: 100%;
+    font-size: 12px;
     height: 120px;
+}
+.btnNextCont{
+    display: flex;
+    text-align: center;
+    width: 100%;
+}
+.btnNext{
+    margin: 0 auto;
+    width: 140px;
+    height: 80px;
+    background-color: aqua;
+    border-radius: 20px;
+
+}
+.btnVerCont{
+    width: 100%;
+}
+.btnVer{
+    margin: 10px;
+    width: 150px;
+    height: 50px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgb(124, 163, 31);
+    background-color: aquamarine;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+    border: solid 3px black;
+    font-size: 20px;
+
 }
