@@ -25,6 +25,10 @@ const Peliculas = () => {
     const ver = () => {
         colorRef.current.style.display = 'block';
     };
+    const salir = () => {
+        colorRef.current.style.display = 'bnone';
+    };
+
 
 
     const getPeliculas = async (page) => {
@@ -49,9 +53,7 @@ const Peliculas = () => {
 
     }
 
-    const salir = (id) => {
-
-    }
+    
 
     useEffect(() => {
         getPeliculas();
@@ -95,8 +97,8 @@ const Peliculas = () => {
                         </div>
                         <div className="modal" ref={colorRef}>
                             <div className="modalCont" >
-                                <div className="modalIconCont">
-                                    <ImExit onClick={salir(`${element.id}`)} />
+                                <div className="modalIconCont" onClick={salir}>
+                                    <ImExit  />
                                 </div>
                                 <div className="modalImgCont">
                                     <img className="modalImg" src={`${imagePath + element.poster_path}`}></img>
