@@ -5,6 +5,7 @@
     color: white;
 }
 .card{
+    
     float: left;
     margin: 3%;
     width: 200px;
@@ -23,7 +24,7 @@
     width: 100%;
 }
 .imgPeli{
-    width: 195px;
+    width: 190px;
     border-radius: 20px;
     box-shadow: 0px 5px 10px rgb(0, 0, 0);
 }
@@ -46,3 +47,8 @@
     border-radius: 20px;
 
 }
+.modal{
+    display: none;
+    z-index: 6;
+}
+
