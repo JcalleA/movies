@@ -15,18 +15,16 @@ const Peliculas = () => {
     const urlTmdb = baseUrl + discover + keyApi;
     const yts = "https://yts.mx/api/v2/list_movies.json";
     const consulta2 = "?query_term=";
-    const uri = "http://localhost:4000/"; //"https://back-movies-jwyg.onrender.com/1080/Video";
+    const uri ="https://back-movies-jwyg.onrender.com/";
     const external = baseUrl + "/find/tt10151854" + keyApi + "&external_source=imdb_id";
-    const display = {
-        display: "none"
-    };
+
 
     const colorRef = useRef();
     const ver = () => {
         colorRef.current.style.display = 'block';
     };
     const salir = () => {
-        colorRef.current.style.display = 'bnone';
+        colorRef.current.style.display = 'none';
     };
 
 
@@ -93,6 +91,11 @@ const Peliculas = () => {
                             </div>
                             <div className="imgCont" onClick={ver}>
                                 <img className="imgPeli" src={`${imagePath + element.poster_path}`}></img>
+                            </div>
+                            <div classname="btnCont">
+                                <button classname="btnDesc">desacargar
+                                    <a href={`${element.torrent}`}></a>
+                                </button>
                             </div>
                         </div>
                         <div className="modal" ref={colorRef}>
