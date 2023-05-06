@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./Peliculas.css";
-import { ImExit } from "react-icons/im"
+
+import { useNavigate } from "react-router-dom";
+
+
 const Peliculas = () => {
 
     const keyApi = '?api_key=01f8864c658ff852bda51d8e300d91de&language=es-ES';
@@ -15,45 +18,50 @@ const Peliculas = () => {
     const urlTmdb = baseUrl + discover + keyApi;
     const yts = "https://yts.mx/api/v2/list_movies.json";
     const consulta2 = "?query_term=";
-    const uri = "http://localhost:4000/"; //"https://back-movies-jwyg.onrender.com/1080/Video";
+    const uri = "https://back-movies-jwyg.onrender.com/";
     const external = baseUrl + "/find/tt10151854" + keyApi + "&external_source=imdb_id";
-    const display = {
-        display: "none"
+    const navigate = useNavigate();
+
+
+    
+
+
+    const ver = (idx) => {
+        navigate('/Pelicula', {
+            state: {
+                id: datos1[idx].id,
+                title: datos1[idx].title,
+                image: imagePath + datos1[idx].poster_path,
+                description: datos1[idx].overview
+            }
+        });
     };
-
-    const colorRef = useRef();
-    const ver = () => {
-        colorRef.current.style.display = 'block';
-    };
-    const salir = () => {
-        colorRef.current.style.display = 'bnone';
-    };
-
-
-
+    
     const getPeliculas = async (page) => {
 
         const { data } = await axios.get(urlTmdb);
         let lis = [];
 
         data.results.forEach(element => {
-            lis.push(axios.get(uri + element.title))
+            lis.push(axios.get(uri + element.original_title.replace(/[.!¡?¿:,;-]/g,'').normalize('NFD').replace(/[\u0300-\u036f]/g,"")))
+            
         });
+        console.log(lis);
         const promises = await axios.all(lis);
         let listaFull = [];
         let n = 0;
         data.results.forEach((item) => {
-            item.torrent = promises[n].data[0].magnet;
+            item.torrent = promises[n].data[0];
             listaFull.push(item);
-            console.log(listaFull);
+
             n = n + 1;
         })
         setDatos(listaFull);
-        console.log(datos1);
+        
 
     }
 
-    
+
 
     useEffect(() => {
         getPeliculas();
@@ -78,7 +86,7 @@ const Peliculas = () => {
         }
 
     }
-
+    console.log(datos1);
 
     return (
 
@@ -91,28 +99,8 @@ const Peliculas = () => {
                             <div className="titleCont">
                                 <h1 >{element.title}</h1>
                             </div>
-                            <div className="imgCont" onClick={ver}>
+                            <div className="imgCont" onClick={()=>{ver(datos1.indexOf(element))}}>
                                 <img className="imgPeli" src={`${imagePath + element.poster_path}`}></img>
-                            </div>
-                        </div>
-                        <div className="modal" ref={colorRef}>
-                            <div className="modalCont" >
-                                <div className="modalIconCont" onClick={salir}>
-                                    <ImExit  />
-                                </div>
-                                <div className="modalImgCont">
-                                    <img className="modalImg" src={`${imagePath + element.poster_path}`}></img>
-                                </div>
-                                <div className="modalListCont">
-                                    <ol>
-                                        <li>Rate: {element.vote_average}</li>
-                                        <li>Total Votos: {element.vote_count}</li>
-                                        <li>Lanzamiento: {element.release_date}</li>
-                                    </ol>
-                                </div>
-                                <div className="modalParrafo">
-                                    <p>Descripcion: <br></br>{element.overview}</p>
-                                </div>
                             </div>
                         </div>
                     </div>

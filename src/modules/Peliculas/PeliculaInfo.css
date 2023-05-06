@@ -1,0 +1,30 @@
+.infoCont1{
+    position: absolute;
+    
+    width: 100%;
+    
+}
+.title1{
+    
+    width: 90%;
+}
+.iconCont{
+    
+    width: 10%;
+}
+.imgCont1{
+    
+    width: 45%;
+    height: auto;
+    border: solid 4px black;
+    border-radius: 20px;
+}
+.imgCont1 img{
+    margin: 4px;
+    width: 95%;
+    border-radius: 20px;
+}
+.listCont1{
+    display: flex;
+    width: 45%;
+}
