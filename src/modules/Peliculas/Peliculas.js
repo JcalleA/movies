@@ -6,6 +6,13 @@ import { useNavigate } from "react-router-dom";
 
 
 const Peliculas = () => {
+    
+    const provider ={
+        tpb:["ThePirateBay","Video"],
+        t9:["Torrent9","Movies"],
+        tz:["Torrentz2","Movies"],
+        t13:["1337x","Movies"]
+    }
 
     const keyApi = '?api_key=01f8864c658ff852bda51d8e300d91de&language=es-ES';
     const baseUrl = 'https://api.themoviedb.org/3';
@@ -32,18 +39,21 @@ const Peliculas = () => {
                 id: datos1[idx].id,
                 title: datos1[idx].title,
                 image: imagePath + datos1[idx].poster_path,
-                description: datos1[idx].overview
+                description: datos1[idx].overview,
+                rate:datos1[idx].vote_average,
+                count:datos1[idx].vote_count,
+                link:datos1[idx].torrent.desc
             }
         });
     };
     
     const getPeliculas = async (page) => {
 
-        const { data } = await axios.get(urlTmdb);
+        const { data } = await axios.get(urlTmdb+"&page="+page);
         let lis = [];
 
         data.results.forEach(element => {
-            lis.push(axios.get(uri + element.original_title.replace(/[.!¡?¿:,;-]/g,'').normalize('NFD').replace(/[\u0300-\u036f]/g,"")))
+            lis.push(axios.get(uri + element.original_title.replace(/[.!¡?¿:,;-]/g,'').normalize('NFD').replace(/[\u0300-\u036f]/g,"")+"/"+provider.t13[1]+"/"+provider.t13[0]))
             
         });
         console.log(lis);
