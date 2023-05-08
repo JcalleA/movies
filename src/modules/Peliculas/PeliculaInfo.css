@@ -23,14 +23,26 @@
 }
 .iconCont{
     position :relative;
-    text-align :center; 
+    text-align :left; 
     font-size :39px;
     width: 20%;
 }
 .icon1{
     margin-top :20px;
     color:azure;
-        
+    animation: salir 1s linear infinite;
+}
+@keyframes salir {
+    0%{
+        transform: rotate(-5deg);
+
+    }
+    50%{
+        transform: rotate(5deg);
+    }
+    100%{
+        transform: rotate(-5deg);
+    }
 }
 .imgCont1{
     margin-left : 10px;
@@ -48,4 +60,11 @@
     text-align :left;
     display: flex;
     width: 45%;
+}
+.tabla{
+    height: auto;
+}
+.tableCont h1 a{
+    height: 30px;
+    color: azure;
 }

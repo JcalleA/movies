@@ -42,7 +42,7 @@ const Peliculas = () => {
                 description: datos1[idx].overview,
                 rate:datos1[idx].vote_average,
                 count:datos1[idx].vote_count,
-                link:datos1[idx].torrent.desc
+                link:datos1[idx].torrent.magnet
             }
         });
     };
@@ -53,7 +53,7 @@ const Peliculas = () => {
         let lis = [];
 
         data.results.forEach(element => {
-            lis.push(axios.get(uri + element.original_title.replace(/[.!¡?¿:,;-]/g,'').normalize('NFD').replace(/[\u0300-\u036f]/g,"")+"/"+provider.t13[1]+"/"+provider.t13[0]))
+            lis.push(axios.get(uri + element.original_title.replace(/[.!¡?¿:,;-]/g,'').normalize('NFD').replace(/[\u0300-\u036f]/g,"")+" dual/"+provider.tpb[1]+"/"+provider.tpb[0]))
             
         });
         console.log(lis);
@@ -104,7 +104,7 @@ const Peliculas = () => {
             <h1>Esto es home</h1>
             <div className="cardCont">
                 {datos1.map((element) => (
-                    <div>
+                    <div key={element.id}>
                         <div className="card">
                             <div className="titleCont">
                                 <h1 >{element.title}</h1>
