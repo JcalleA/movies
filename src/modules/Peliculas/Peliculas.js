@@ -101,7 +101,7 @@ const Peliculas = () => {
     return (
 
         <div>
-            <h1>Esto es home</h1>
+            <h1>Pelis Play</h1>
             <div className="cardCont">
                 {datos1.map((element) => (
                     <div key={element.id}>
