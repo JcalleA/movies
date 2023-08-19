@@ -22,7 +22,6 @@ const Peliculas = () => {
     const consulta = '&query=';
     const [datos1, setDatos] = useState([]);
     const [page, setPage] = useState(1);
-    const [key, setKey] = useState('')
     const urlTmdb = baseUrl + discover + keyApi;
     const yts = "https://yts.mx/api/v2/list_movies.json";
     const consulta2 = "?query_term=";
@@ -40,18 +39,18 @@ const Peliculas = () => {
         const uriVideo = baseUrl + '/movie/' + datos1[idx].id + keyApi + '&append_to_response=videos';
         const { data } = await axios.get(uriVideo);
 
-        
+        let key;
         
         if(data.videos.results.length==0){
             console.log('====================================');
             console.log('es null');
             console.log('====================================');
-            setKey('4xRG-6-J0mA')
+            key='4xRG-6-J0mA'
         }else{
             console.log('====================================');
             console.log('no es null');
             console.log('====================================');
-            setKey(data.videos.results[0].key)
+            key = data.videos.results[0].key
         }
         
         navigate('/Pelicula', {
@@ -69,7 +68,7 @@ const Peliculas = () => {
 
     const getPeliculas = async (page) => {
 
-        const { data } = await axios.get(urlTmdb + "&page=" + page + '&append_to_response=videos');
+        const { data } = await axios.get(urlTmdb +'&append_to_response=videos'+ page + "&page="  );
         setDatos(data.results);
     }
 
