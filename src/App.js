@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Peliculas from "./modules/Peliculas/Peliculas";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, Swit} from "react-router-dom";
 import PeliculaInfo from './modules/Peliculas/PeliculaInfo';
 function App() {
   return (
@@ -10,8 +10,8 @@ function App() {
       
       
         <Routes>
-          <Route exact path='/' Component={Peliculas}/>
-          <Route path='/Pelicula' Component={PeliculaInfo}/>
+          <Route exact path='/' element={<Peliculas/>}/>
+          <Route path='/Pelicula' element={<PeliculaInfo/>}/>
           </Routes>
       
     </div>
