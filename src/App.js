@@ -10,8 +10,8 @@ function App() {
       
       
         <Routes>
-          <Route exact path='/' element={Peliculas}/>
-          <Route path='/Pelicula' element={PeliculaInfo}/>
+          <Route exact path='/' Component={Peliculas}/>
+          <Route path='/Pelicula' Component={PeliculaInfo}/>
           </Routes>
       
     </div>
