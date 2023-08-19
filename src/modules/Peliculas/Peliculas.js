@@ -59,7 +59,7 @@ const Peliculas = () => {
 
     const getPeliculas = async (page) => {
 
-        const { data } = await axios.get(urlTmdb +'&append_to_response=videos'+ page + "&page="  );
+        const { data } = await axios.get(urlTmdb + "&page=" +page  );
         setDatos(data.results);
     }
 
