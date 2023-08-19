@@ -1,6 +1,6 @@
 {
   "name": "my-app",
-  "homepage": "https://jcallea.github.io/movies",
+  "homepage": "https://jcallea.github.io/movies/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
