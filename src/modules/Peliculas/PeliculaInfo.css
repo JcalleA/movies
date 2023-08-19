@@ -9,6 +9,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
+    justify-content: space-around;
     
 }
 .title1{
@@ -48,12 +49,11 @@
     margin-left : 10px;
     width: 45%;
     height: auto;
-    border: solid 4px black;
-    border-radius: 20px;
 }
 .imgCont1 img{
     margin: 4px;
     width: 95%;
+    border: solid 4px black;
     border-radius: 20px;
 }
 .listCont1{

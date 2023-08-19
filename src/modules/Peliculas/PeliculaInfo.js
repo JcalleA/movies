@@ -2,12 +2,24 @@ import React from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ImExit } from "react-icons/im";
 import "./PeliculaInfo.css"
+import axios from "axios";
+import { useState, useEffect } from 'react';
+import YouTube from 'react-youtube';
 
 
 const PeliculaInfo = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
+    const opts = {
+        height: '300',
+        width: '90%',
+        playerVars: {
+            // https://developers.google.com/youtube/player_parameters
+            autoplay: 1,
+        },
+    };
+    
     const salir = () => {
         navigate("/")
     }
@@ -20,8 +32,11 @@ const PeliculaInfo = () => {
         return (
             rate
         )
-
     }
+
+    console.log('==============dese info pelicula======================');
+    console.log('---'+location.state.urlVideo);
+    console.log('====================================');
 
 
     return (
@@ -41,12 +56,14 @@ const PeliculaInfo = () => {
                 <div className="listCont1">
                     <h1>Rating:{location.state.rate}<h2>{rating(location.state.rate)}</h2></h1>
                     <h1>Total votos:<br></br>{location.state.count}</h1>
-                    <h1>Descargar Torrent:<br></br>
-                        <a href={location.state.link}>
-                            <button className="btnDesc">Descargar</button>
-                        </a><br></br>
-                    </h1>
+
                 </div>
+            </div>
+            <p>
+                {location.state.description}
+            </p>
+            <div>
+                <YouTube videoId={location.state.urlVideo} opts={opts} />
             </div>
         </div>
     )

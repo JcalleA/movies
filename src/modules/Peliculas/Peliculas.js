@@ -6,12 +6,12 @@ import { useNavigate } from "react-router-dom";
 
 
 const Peliculas = () => {
-    
-    const provider ={
-        tpb:["ThePirateBay","Video"],
-        t9:["Torrent9","Movies"],
-        tz:["Torrentz2","Movies"],
-        t13:["1337x","Movies"]
+
+    const provider = {
+        tpb: ["ThePirateBay", "Video"],
+        t9: ["Torrent9", "Movies"],
+        tz: ["Torrentz2", "Movies"],
+        t13: ["1337x", "Movies"]
     }
 
     const keyApi = '?api_key=01f8864c658ff852bda51d8e300d91de&language=es-ES';
@@ -22,6 +22,7 @@ const Peliculas = () => {
     const consulta = '&query=';
     const [datos1, setDatos] = useState([]);
     const [page, setPage] = useState(1);
+    const [key, setKey] = useState('')
     const urlTmdb = baseUrl + discover + keyApi;
     const yts = "https://yts.mx/api/v2/list_movies.json";
     const consulta2 = "?query_term=";
@@ -30,48 +31,47 @@ const Peliculas = () => {
     const navigate = useNavigate();
 
 
-    
 
 
-    const ver = (idx) => {
+
+
+    const ver = async (idx) => {
+
+        const uriVideo = baseUrl + '/movie/' + datos1[idx].id + keyApi + '&append_to_response=videos';
+        const { data } = await axios.get(uriVideo);
+
+        
+        
+        if(data.videos.results.length==0){
+            console.log('====================================');
+            console.log('es null');
+            console.log('====================================');
+            setKey('4xRG-6-J0mA')
+        }else{
+            console.log('====================================');
+            console.log('no es null');
+            console.log('====================================');
+            setKey(data.videos.results[0].key)
+        }
+        
         navigate('/Pelicula', {
             state: {
                 id: datos1[idx].id,
                 title: datos1[idx].title,
                 image: imagePath + datos1[idx].poster_path,
                 description: datos1[idx].overview,
-                rate:datos1[idx].vote_average,
-                count:datos1[idx].vote_count,
-                link:datos1[idx].torrent.magnet
+                rate: datos1[idx].vote_average,
+                count: datos1[idx].vote_count,
+                urlVideo: key,
             }
         });
     };
-    
+
     const getPeliculas = async (page) => {
 
-        const { data } = await axios.get(urlTmdb+"&page="+page);
-        let lis = [];
-
-        data.results.forEach(element => {
-            lis.push(axios.get(uri + element.original_title.replace(/[.!¡?¿:,;-]/g,'').normalize('NFD').replace(/[\u0300-\u036f]/g,"")+" dual/"+provider.tpb[1]+"/"+provider.tpb[0]))
-            
-        });
-        console.log(lis);
-        const promises = await axios.all(lis);
-        let listaFull = [];
-        let n = 0;
-        data.results.forEach((item) => {
-            item.torrent = promises[n].data[0];
-            listaFull.push(item);
-
-            n = n + 1;
-        })
-        setDatos(listaFull);
-        
-
+        const { data } = await axios.get(urlTmdb + "&page=" + page + '&append_to_response=videos');
+        setDatos(data.results);
     }
-
-
 
     useEffect(() => {
         getPeliculas();
@@ -85,18 +85,13 @@ const Peliculas = () => {
     const prev = () => {
 
         if (page == 1) {
-
-
         } else {
-
             const nPage = page - 1;
             getPeliculas(nPage);
             setPage(nPage);
-
         }
-
     }
-    console.log(datos1);
+
 
     return (
 
@@ -109,7 +104,7 @@ const Peliculas = () => {
                             <div className="titleCont">
                                 <h1 >{element.title}</h1>
                             </div>
-                            <div className="imgCont" onClick={()=>{ver(datos1.indexOf(element))}}>
+                            <div className="imgCont" onClick={() => { ver(datos1.indexOf(element)) }}>
                                 <img className="imgPeli" src={`${imagePath + element.poster_path}`}></img>
                             </div>
                         </div>
