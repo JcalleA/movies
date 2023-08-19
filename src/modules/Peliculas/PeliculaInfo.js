@@ -34,9 +34,7 @@ const PeliculaInfo = () => {
         )
     }
 
-    console.log('==============dese info pelicula======================');
-    console.log('---'+location.state.urlVideo);
-    console.log('====================================');
+    
 
 
     return (

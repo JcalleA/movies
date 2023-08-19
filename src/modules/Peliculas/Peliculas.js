@@ -42,14 +42,10 @@ const Peliculas = () => {
         let key;
         
         if(data.videos.results.length==0){
-            console.log('====================================');
-            console.log('es null');
-            console.log('====================================');
-            key='4xRG-6-J0mA'
+            
+            key='VKeJ2mzPszY'
         }else{
-            console.log('====================================');
-            console.log('no es null');
-            console.log('====================================');
+            
             key = data.videos.results[0].key
         }
         
