@@ -7,12 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const Peliculas = () => {
 
-    const provider = {
-        tpb: ["ThePirateBay", "Video"],
-        t9: ["Torrent9", "Movies"],
-        tz: ["Torrentz2", "Movies"],
-        t13: ["1337x", "Movies"]
-    }
+    
 
     const keyApi = '?api_key=01f8864c658ff852bda51d8e300d91de&language=es-ES';
     const baseUrl = 'https://api.themoviedb.org/3';
