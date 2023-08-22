@@ -10,8 +10,8 @@
 }
 .card{
     margin-top: 20px;
-    width: 200px;
-    height: 400px;
+    width: 150px;
+    height: 280px;
     box-shadow: 0px 0px 20px black;
     border-radius: 30px;
     overflow: hidden;
@@ -23,18 +23,18 @@
 .imgCont{
     text-align: center;
     margin: 0 auto;
-    width: 100%;
+    width: 92%;
 }
 .imgPeli{
-    width: 190px;
+    width: 90%;
     border-radius: 20px;
     box-shadow: 0px 5px 10px rgb(0, 0, 0);
 }
 .titleCont{
     text-align: center;
     width: 100%;
-    font-size: 11px;
-    height: 90px;
+    font-size: 0.5rem;
+    height: 80px;
 }
 .btnNextCont{
     display: flex;
