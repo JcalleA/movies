@@ -1,110 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
 import "./Peliculas.css";
 
 import { useNavigate } from "react-router-dom";
 
 
-const Peliculas = () => {
-
-    
-
-    const keyApi = '?api_key=01f8864c658ff852bda51d8e300d91de&language=es-ES';
-    const baseUrl = 'https://api.themoviedb.org/3';
+const Peliculas = (props) => {
     const imagePath = 'https://image.tmdb.org/t/p/original';
-    const search = '/search/movie';
-    const discover = '/discover/movie';
-    const consulta = '&query=';
-    const [datos1, setDatos] = useState([]);
-    const [page, setPage] = useState(1);
-    const urlTmdb = baseUrl + discover + keyApi;
-    const yts = "https://yts.mx/api/v2/list_movies.json";
-    const consulta2 = "?query_term=";
-    const uri = "https://back-movies-jwyg.onrender.com/";
-    const external = baseUrl + "/find/tt10151854" + keyApi + "&external_source=imdb_id";
-    const navigate = useNavigate();
+    const navigate =useNavigate();
 
-
-
-
-
-
-    const ver = async (idx) => {
-
-        const uriVideo = baseUrl + '/movie/' + datos1[idx].id + keyApi + '&append_to_response=videos';
-        const { data } = await axios.get(uriVideo);
-
-        let key;
-        
-        if(data.videos.results.length==0){
-            
-            key='VKeJ2mzPszY'
-        }else{
-            
-            key = data.videos.results[0].key
-        }
-        
-        navigate('/Pelicula', {
-            state: {
-                id: datos1[idx].id,
-                title: datos1[idx].title,
-                image: imagePath + datos1[idx].poster_path,
-                description: datos1[idx].overview,
-                rate: datos1[idx].vote_average,
-                count: datos1[idx].vote_count,
-                urlVideo: key,
-            }
-        });
-    };
-
-    const getPeliculas = async (page) => {
-
-        const { data } = await axios.get(urlTmdb + "&page=" +page  );
-        setDatos(data.results);
-    }
-
-    useEffect(() => {
-        getPeliculas();
-    }, [])
-
-    const next = () => {
-        const nPage = page + 1;
-        getPeliculas(nPage);
-        setPage(nPage);
-    }
-    const prev = () => {
-
-        if (page == 1) {
-        } else {
-            const nPage = page - 1;
-            getPeliculas(nPage);
-            setPage(nPage);
-        }
-    }
 
 
     return (
-
         <div>
-            <h1>Pelis Play</h1>
             <div className="cardCont">
-                {datos1.map((element) => (
-                    <div key={element.id}>
+                    <div key={props.id}>
                         <div className="card">
                             <div className="titleCont">
-                                <h1 >{element.title}</h1>
+                                <h1 >{props.title}</h1>
                             </div>
-                            <div className="imgCont" onClick={() => { ver(datos1.indexOf(element)) }}>
-                                <img className="imgPeli" src={`${imagePath + element.poster_path}`}></img>
+                            <div className="imgCont" onClick={() => { navigate('/info/'+props.id) }}>
+                                <img className="imgPeli" src={`${imagePath + props.poster}`}></img>
                             </div>
                         </div>
                     </div>
-                ))}
-            </div>
-            <div className="btnNextCont">
-                <button className="btnNext" onClick={() => { prev() }}>PREV</button>
-                <h1>{page}</h1>
-                <button className="btnNext" onClick={() => { next() }}>NEXT</button>
             </div>
         </div>
 

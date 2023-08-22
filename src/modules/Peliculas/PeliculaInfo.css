@@ -1,8 +1,5 @@
 .infoCont2{
     text-align :center; 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
 }
 .infoCont1{
     display: flex;
@@ -12,10 +9,7 @@
     justify-content: space-around;
     
 }
-.title1{
-    position :relative;
-    width: 80%;
-}
+
 .title1 h1{
     margin-top:5px;
     color:azure;

@@ -1,17 +1,21 @@
 
 import './App.css';
-import Peliculas from "./modules/Peliculas/Peliculas";
 import {Route, Routes} from "react-router-dom";
-import PeliculaInfo from './modules/Peliculas/PeliculaInfo';
+import Header from './modules/Header/Header';
+import Genres from './views/Genres'
+import Home from './views/Home';
+import Info from './views/Info/Info';
 function App() {
   return (
     
     <div className="App">
       
+      <Header></Header>
       
         <Routes>
-          <Route exact path='/' element ={<Peliculas/>}/>
-          <Route path='/Pelicula' element ={<PeliculaInfo/>}/>
+          <Route exact path='/' element ={<Home/>}/>
+          <Route path='/info/:id' element ={<Info/>}/>
+          <Route path='/genres' element ={<Genres/>}/>
         </Routes>
       
     </div>

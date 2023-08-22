@@ -1,0 +1,42 @@
+.header{
+    width: 100vw;
+    background-color: #282c34
+}
+.headerContent{
+    display: flex;
+    justify-content: space-around;
+}
+.header h1{
+    color: red;
+}
+.img-logo{
+
+    width: 80px;
+    height: auto;
+    margin-top: 15px;
+
+}
+
+.menuVisible{
+    
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.menuVisible a{
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #fff;
+}
+.menuHidden{
+    display: none;
+}
+.buttonVisible{
+    margin-top: 10px;
+    width: 150px;
+    height: 40px;
+    background-color: red;
+}

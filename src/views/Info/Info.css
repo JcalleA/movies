@@ -1,0 +1,15 @@
+.header2{
+    display: flex;
+    justify-content: space-around;
+    color: red;
+    align-items: center;
+    
+}
+.header2 h1{
+    width: 50%;
+    
+}
+.icon2{
+    
+    font-size: 2.5rem;
+}

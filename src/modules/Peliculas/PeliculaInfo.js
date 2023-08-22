@@ -1,16 +1,13 @@
 import React from "react";
-import { useLocation, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { ImExit } from "react-icons/im";
 import "./PeliculaInfo.css"
-import axios from "axios";
-import { useState, useEffect } from 'react';
 import YouTube from 'react-youtube';
 
 
-const PeliculaInfo = () => {
+const PeliculaInfo = (props) => {
 
     const navigate = useNavigate();
-    const location = useLocation();
     const opts = {
         height: '300',
         width: '90%',
@@ -41,27 +38,25 @@ const PeliculaInfo = () => {
         <div >
             <div className="infoCont2">
                 <div className="title1">
-                    <h1>{location.state.title}</h1>
+                    <h1>{props.title}</h1>
                 </div>
-                <div className="iconCont">
-                    <ImExit className="icon1" onClick={() => { salir() }} />
-                </div>
+                
             </div>
             <div className="infoCont1">
                 <div className="imgCont1">
-                    <img src={location.state.image}></img>
+                    <img src={props.image}></img>
                 </div>
                 <div className="listCont1">
-                    <h1>Rating:{location.state.rate}<h2>{rating(location.state.rate)}</h2></h1>
-                    <h1>Total votos:<br></br>{location.state.count}</h1>
+                    <h1>Rating:{props.rate}<h2>{rating(props.rate)}</h2></h1>
+                    <h1>Total votos:<br></br>{props.count}</h1>
 
                 </div>
             </div>
             <p>
-                {location.state.description}
+                {props.description}
             </p>
             <div>
-                <YouTube videoId={location.state.urlVideo} opts={opts} />
+                <YouTube videoId={props.urlVideo} opts={opts} />
             </div>
         </div>
     )
