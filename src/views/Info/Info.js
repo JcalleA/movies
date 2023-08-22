@@ -19,7 +19,11 @@ const Info = () => {
     const genreApi = '/genre/movie/list';
     const navigate = useNavigate();
     const params = useParams();
-    let keyVideo;
+    const [keyVideo,setKeyVideo]=useState('');
+
+    console.log('=======desde parame id=============================');
+    console.log(params.id);
+    console.log('====================================');
 
 
 
@@ -35,10 +39,14 @@ const Info = () => {
         setDatos(data);
 
         if (data.videos.results.length == 0) {
-            keyVideo = 'VKeJ2mzPszY'
+            setKeyVideo('VKeJ2mzPszY');
         } else {
-            keyVideo = data.videos.results[0].key
+            setKeyVideo(data.videos.results[0].key)
         }
+
+        console.log('==========desde ña key==========================');
+        console.log(keyVideo);
+        console.log('====================================');
     };
 
     const salir = () => {

@@ -31,7 +31,9 @@ const PeliculaInfo = (props) => {
         )
     }
 
-    
+    console.log('===============desde props video=====================');
+    console.log(props.urlVideo);
+    console.log('====================================');
 
 
     return (
