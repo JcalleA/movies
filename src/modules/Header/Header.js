@@ -1,5 +1,4 @@
 import React, { useState,useEffect} from 'react';
-
 import { Link, useNavigate } from 'react-router-dom';
 import "./Header.css"
 import axios from 'axios';
@@ -9,19 +8,14 @@ import axios from 'axios';
 
 const Header = () => {
 
-    const keyApi = '?api_key=01f8864c658ff852bda51d8e300d91de&language=es-ES';
+    const keyApi = process.env.REACT_APP_APIKEY_TMDB+ '&language=es-ES'
     const baseUrl = 'https://api.themoviedb.org/3';
-    const imagePath = 'https://image.tmdb.org/t/p/original';
-    const search = '/search/movie';
     const discover = '/discover/movie';
-    const consulta = '&query=';
     const [genres, setGenres] = useState([]);
-    const urlTmdb = baseUrl + discover + keyApi;
     const genreApi = '/genre/movie/list';
     const navigate = useNavigate();
     const [menu,setMenu] = useState('menuHidden');
-    const [categoryButon, setCategoryButon]=useState('buttonVisible')
-    const [data1,setData1]=useState([]);
+    const [categoryButon, setCategoryButon]=useState('CATEGORIAS')
 
 
     const getGenres = async () => {
@@ -38,21 +32,15 @@ const Header = () => {
 
         if (menu ==='menuVisible'){
             setMenu('menuHidden');
+            setCategoryButon('CATEGORIAS');
         }else{
-            setMenu('menuVisible')
+            setMenu('menuVisible');
+            setCategoryButon('OCULTAR');
+            
         }
     }
 
 
-    const verGenre=async(genre)=>{
-        
-        const { data } = await axios.get(baseUrl+discover+keyApi+'&with_genres='+genre );
-        console.log('====================================');
-        console.log(data);
-        console.log('====================================');
-
-    }
-    
 
 
     return (
@@ -65,7 +53,7 @@ const Header = () => {
                             alt="Imagen del logo">
                         </img>
                     </Link>
-                    <button className={categoryButon} onClick={()=>{viewMenu()}}>Categorias</button>
+                    <button className='buttonVisible' onClick={()=>{viewMenu()}}>{categoryButon}</button>
                 </div>
                 <li className={menu}>
                     {genres.map((element)=>(

@@ -1,13 +1,11 @@
 import React from "react";
-import {  useNavigate } from 'react-router-dom';
-import { ImExit } from "react-icons/im";
 import "./PeliculaInfo.css"
 import YouTube from 'react-youtube';
 
 
 const PeliculaInfo = (props) => {
 
-    const navigate = useNavigate();
+    
     const opts = {
         height: '300',
         width: '90%',
@@ -17,9 +15,6 @@ const PeliculaInfo = (props) => {
         },
     };
     
-    const salir = () => {
-        navigate("/")
-    }
     const rating = (rat) => {
         console.log(Math.round((rat / 2)));
         let rate = '';
@@ -31,9 +26,6 @@ const PeliculaInfo = (props) => {
         )
     }
 
-    console.log('===============desde props video=====================');
-    console.log(props.urlVideo);
-    console.log('====================================');
 
 
     return (
@@ -51,6 +43,8 @@ const PeliculaInfo = (props) => {
                 <div className="listCont1">
                     <h1>Rating:{props.rate}<h2>{rating(props.rate)}</h2></h1>
                     <h1>Total votos:<br></br>{props.count}</h1>
+                    <h1>Año:<br></br>{props.date}</h1>
+                    
 
                 </div>
             </div>

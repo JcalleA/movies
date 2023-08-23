@@ -1,58 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import Peliculas from "../modules/Peliculas/Peliculas";
 import '../modules/Peliculas/Peliculas.css'
 
 const Home = () => {
 
-    const keyApi = '?api_key=01f8864c658ff852bda51d8e300d91de&language=es-ES';
+    const keyApi = process.env.REACT_APP_APIKEY_TMDB+ '&language=es-ES';
     const baseUrl = 'https://api.themoviedb.org/3';
-    const imagePath = 'https://image.tmdb.org/t/p/original';
-    const search = '/search/movie';
     const discover = '/discover/movie';
-    const consulta = '&query=';
     const [datos1, setDatos] = useState([]);
     const [page, setPage] = useState(1);
     const urlTmdb = baseUrl + discover + keyApi;
-    const genreApi = '/genre/movie/list';
-    const navigate = useNavigate();
-
-
-
-
-
-
-    const ver = async (idx) => {
-
-        const uriVideo = baseUrl + '/movie/' + datos1[idx].id + keyApi + '&append_to_response=videos';
-        const { data } = await axios.get(uriVideo);
-
-        let key;
-
-        if (data.videos.results.length == 0) {
-
-            key = 'VKeJ2mzPszY'
-        } else {
-
-            key = data.videos.results[0].key
-        }
-
-        navigate('/Pelicula', {
-            state: {
-                id: datos1[idx].id,
-                title: datos1[idx].title,
-                image: imagePath + datos1[idx].poster_path,
-                description: datos1[idx].overview,
-                rate: datos1[idx].vote_average,
-                count: datos1[idx].vote_count,
-                urlVideo: key,
-            }
-        });
-    };
+    
 
     const getPeliculas = async (page) => {
-
         const { data } = await axios.get(urlTmdb + "&page=" + page);
         setDatos(data.results);
     }
