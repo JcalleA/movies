@@ -26,17 +26,21 @@
     align-items: center;
 
 }
-.menuVisible a{
+.menuVisible button{
     text-decoration: none;
     font-size: 1.5rem;
     color: #fff;
+    background-color:brown;
+    margin:3px;
 }
 .menuHidden{
     display: none;
 }
 .buttonVisible{
-    margin-top: 10px;
+    margin: 9px;
     width: 150px;
     height: 40px;
     background-color: red;
+    color:#fff;
+    font-size: 1rem;
 }

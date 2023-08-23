@@ -69,7 +69,7 @@ const Header = () => {
                 </div>
                 <li className={menu}>
                     {genres.map((element)=>(
-                            <button key={element.id} onClick={()=>{navigate('/genres/'+element.name+'/'+element.id)}} >| {element.name} |</button>
+                            <button key={element.id} onClick={()=>{viewMenu();navigate('/genres/'+element.name+'/'+element.id)}} >{element.name}</button>
                         ))}
                     </li>
                     
