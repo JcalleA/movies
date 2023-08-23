@@ -30,7 +30,7 @@ const Genres = () => {
 
     const ver = async (idx) => {
 
-        const uriVideo = baseUrl + '/movie/' + datos1[idx].id + keyApi + '&append_to_response=videoswith_genres='+params.id;
+        const uriVideo = baseUrl + '/movie/' + datos1[idx].id + keyApi + '&append_to_response=videos';
         const { data } = await axios.get(uriVideo);
 
         let key;
@@ -58,7 +58,7 @@ const Genres = () => {
 
     const getPeliculas = async (page) => {
 
-        const { data } = await axios.get(urlTmdb + "&page=" + page);
+        const { data } = await axios.get(urlTmdb + "&page=" + page+'&with_genres='+params.id);
         setDatos(data.results);
     }
 
