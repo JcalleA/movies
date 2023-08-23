@@ -28,6 +28,7 @@ const Genres = () => {
 
 
 
+
     const ver = async (idx) => {
 
         const uriVideo = baseUrl + '/movie/' + datos1[idx].id + keyApi + '&append_to_response=videos';
@@ -64,7 +65,8 @@ const Genres = () => {
 
     useEffect(() => {
         getPeliculas();
-    }, [])
+        
+    }, [params] )
 
     const next = () => {
         const nPage = page + 1;
